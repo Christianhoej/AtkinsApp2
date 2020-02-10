@@ -31,6 +31,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/HomeScreen'
 import LockerManager from './LockerManager'
 import CountdownScreen from './components/CountdownScreen';
+import DeliverScreen from './components/DeliverScreen';
+import ClosingScreen from './components/ClosingScreen';
+import FinishScreen from './components/FinishScreen';
+
+
 
 function TestScreen({ navigation }) {
   return (
@@ -80,17 +85,21 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Test">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Test" component={TestScreen} />
 
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           //{props => <HomeScreen {...props} extraData={someData} />}
-          options={{ title: 'Home' }}
+          options={{ title: 'Start' }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="Countdown" component={CountdownScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detaljer' }}/>
+        <Stack.Screen name="Countdown" component={CountdownScreen} options={{ title: 'Hent pakke' }}/>
+        <Stack.Screen name="Deliver" component={DeliverScreen} options={{ title: 'Aflever pakke' }}/>
+        <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen' }}/>
+        <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Færdig' }}/>
+
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -27,7 +27,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-function CountdownScreen ({navigation}) {
+
+function ClosingScreen ({navigation}) {
 
     return (
 
@@ -35,22 +36,14 @@ function CountdownScreen ({navigation}) {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Din pakke er reseveret i:</Text>
-              <CountDown
-                until={60 * 30}
-                size={30}
-                onFinish={() => {navigation.popToTop() || alert('Din reservation løb ud...')}}
-                digitStyle={{backgroundColor: 'lightgrey'}}
-                digitTxtStyle={{color: '#1CC625'}}
-                timeToShow={['M', 'S']}
-                timeLabels={{m: 'M', s: 'S'}}
-              />
+            <Text style={styles.sectionTitle}>Luk lågen når du har taget din pakke</Text>
+
           </View>
 
           <View style = {styles.button}>
                   <Button
-                      title="Åben"
-                      onPress={() => navigation.navigate('Finish')}
+                      title="Meld lågen lukket"
+                      //onPress={() => navigation.navigate('Countdown')}
 
                     />
                   </View>
@@ -113,4 +106,4 @@ sectionContainer: {
 
 });
 
-export default CountdownScreen;
+export default ClosingScreen;

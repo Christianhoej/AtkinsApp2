@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
+import LockerManager from '../LockerManager'
+
 
 import {
   Header,
@@ -27,21 +29,19 @@ import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CountdownScreen from '../components/CountdownScreen';
+import ClosingScreen from '../components/ClosingScreen';
 
 
 const stations = [
-  {
-    label: 'Nørreport',
-    value: 'nørreport',
-  },
-  {
-    label: 'Københavns Hovedbanegård',
-    value: 'københavns hovedbanegård',
-  },
-  {
-    label: 'Lyngby',
-    value: 'lyngby',
-  },
+  {label: 'Nørreport',
+    value: 'nørreport'
+    },
+  {label: 'Hovedbanegården',
+   value: 'hovedbanegården'
+   },
+  {label: 'Lyngby',
+    value: 'lyngby'
+    },
 ];
 
 function HomeScreen({navigation}) {
@@ -65,11 +65,7 @@ function HomeScreen({navigation}) {
                     onValueChange={(value) => console.log(value)}
                     style={pickerSelectStyles}
 
-                    items={[
-                        { label: 'Nørreport', value: 'nørreport' },
-                        { label: 'Københavns Hovedbanegård', value: 'hovedbanegården' },
-                        { label: 'Lyngby', value: 'lyngby' },
-                    ]}
+                    items={stations}
                     placeholder={ {label: 'Vælg station', value: null, color: '#9EA0A4' }}
                 />
             </View>
@@ -80,6 +76,18 @@ function HomeScreen({navigation}) {
             onPress={() => navigation.navigate('Countdown')}
           />
         </View>
+
+        <View style={styles.sectionContainer}>
+                <Text style={styles.sectionTitle}>Test connection</Text>
+                <Button
+                        title="Test Connection"
+                        //onPress={ () => console.log("Test connection")}
+
+                        onPress={ () => LockerManager.connect("00000000-4281-4e45-0039-50130000003c") ||
+                        LockerManager.startScan() ||
+                        console.log("Test connection")}
+                      />
+              </View>
     </ScrollView>
 
 
