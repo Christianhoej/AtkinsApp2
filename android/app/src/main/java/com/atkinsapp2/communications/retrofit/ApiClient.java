@@ -1,0 +1,26 @@
+package com.atkinsapp2.communications.retrofit;
+
+/*
+ * Created by Zubair Akber on 22/07/2019
+ * zubair.akber@outlook.com
+ */
+
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class ApiClient {
+
+    private static Retrofit retrofit = null;
+
+    public static Retrofit getRetrofitClient() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl("https://dev.infinity.swipbox.com/maintenance-app-api/v1/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
+}
