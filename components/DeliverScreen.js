@@ -43,7 +43,7 @@ function DeliverScreen ({navigation}) {
           <View style = {styles.button}>
                   <Button
                       title="Åben"
-                      //onPress={() => navigation.navigate('Countdown')}
+                      onPress={() => navigation.navigate('Finish')}
 
                     />
                   </View>

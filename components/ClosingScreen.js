@@ -10,7 +10,8 @@ import {
   Text,
   StatusBar,
   Button,
-  Picker
+  Picker,
+  ActivityIndicator
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -33,21 +34,23 @@ function ClosingScreen ({navigation}) {
     return (
 
        <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Luk lågen når du har taget din pakke</Text>
+               contentInsetAdjustmentBehavior="automatic"
+               style={styles.scrollView}>
+                 <View style={styles.sectionContainer}>
+                   <Text style={styles.sectionTitle}>Luk lågen når du har taget din pakke</Text>
 
-          </View>
+                 </View>
+                   <View style={styles.sectionContainer}>
+                   <ActivityIndicator size="large" color="#0000ff" />
 
-          <View style = {styles.button}>
-                  <Button
-                      title="Meld lågen lukket"
-                      //onPress={() => navigation.navigate('Countdown')}
-
-                    />
-                  </View>
-        </ScrollView>
+                 </View>
+                 <View style = {styles.button}>
+                         <Button
+                             title="Meld lågen lukket"
+                               onPress={() => navigation.navigate("Deliver")}
+                           />
+                         </View>
+               </ScrollView>
     )
 }
 

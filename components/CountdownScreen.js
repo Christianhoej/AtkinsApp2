@@ -50,7 +50,7 @@ function CountdownScreen ({navigation}) {
           <View style = {styles.button}>
                   <Button
                       title="Åben"
-                      onPress={() => navigation.navigate('Finish')}
+                      onPress={() => navigation.navigate('Closing')}
 
                     />
                   </View>

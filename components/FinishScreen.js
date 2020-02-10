@@ -37,16 +37,17 @@ function FinishScreen ({navigation}) {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Luk lågen når du har taget din pakke</Text>
+            <Text style={styles.sectionTitle}>Tak for din hjælp!</Text>
+            <Text style={styles.sectionDescription}>Du modtager en mail med din rabat</Text>
+
 
           </View>
             <View style={styles.sectionContainer}>
-            <ActivityIndicator size="large" color="#0000ff" />
 
           </View>
           <View style = {styles.button}>
                   <Button
-                      title="Meld lågen lukket"
+                      title="Færdig"
                         onPress={() => navigation.popToTop()}
                     />
                   </View>
