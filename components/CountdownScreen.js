@@ -25,7 +25,7 @@ import {
 
 import * as React from 'react';
 import { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions, NavigationActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 function CountdownScreen ({navigation}) {
 
@@ -50,9 +50,9 @@ function CountdownScreen ({navigation}) {
           <View style = {styles.button}>
                   <Button
                       title="Åben"
-                      onPress={() => navigation.navigate('Closing')}
 
-                    />
+                      onPress={() => navigation.replace('Deliver')}
+                      />
                   </View>
         </ScrollView>
     )

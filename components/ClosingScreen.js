@@ -47,7 +47,7 @@ function ClosingScreen ({navigation}) {
                  <View style = {styles.button}>
                          <Button
                              title="Meld lågen lukket"
-                               onPress={() => navigation.navigate("Deliver")}
+                               onPress={() => navigation.replace("Deliver")}
                            />
                          </View>
                </ScrollView>

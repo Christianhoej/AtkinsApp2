@@ -48,7 +48,7 @@ function FinishScreen ({navigation}) {
           <View style = {styles.button}>
                   <Button
                       title="Færdig"
-                        onPress={() => navigation.popToTop()}
+                        onPress={() => navigation.replace('Home')}
                     />
                   </View>
         </ScrollView>

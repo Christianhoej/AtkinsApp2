@@ -73,7 +73,7 @@ function HomeScreen({navigation}) {
        <View style = {styles.button}>
         <Button
             title="OK"
-            onPress={() => navigation.navigate('Countdown')}
+            onPress={() => navigation.replace('Countdown')}
           />
         </View>
 

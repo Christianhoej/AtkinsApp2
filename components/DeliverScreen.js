@@ -10,7 +10,8 @@ import {
   Text,
   StatusBar,
   Button,
-  Picker
+  Picker,
+  BackHandler
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -28,9 +29,15 @@ import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+
+
 function DeliverScreen ({navigation}) {
 
+
+
+
     return (
+
 
        <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -43,14 +50,13 @@ function DeliverScreen ({navigation}) {
           <View style = {styles.button}>
                   <Button
                       title="Åben"
-                      onPress={() => navigation.navigate('Finish')}
+                      onPress={() => navigation.replace('Finish')}
 
                     />
                   </View>
         </ScrollView>
     )
 }
-
 
 const styles = StyleSheet.create({
 sectionContainer: {

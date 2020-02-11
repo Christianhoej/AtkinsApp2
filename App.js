@@ -82,12 +82,12 @@ function DetailsScreen({ navigation }) {
 
 const Stack = createStackNavigator();
 
+
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Test" component={TestScreen} />
-
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -96,13 +96,15 @@ function App() {
         />
         <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detaljer' }}/>
         <Stack.Screen name="Countdown" component={CountdownScreen} options={{ title: 'Hent pakke' }}/>
-        <Stack.Screen name="Deliver" component={DeliverScreen} options={{ title: 'Aflever pakke' }}/>
-        <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen' }}/>
-        <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Færdig' }}/>
-
-
+        <Stack.Screen name="Deliver" component={DeliverScreen} options={{ title: 'Aflever pakke'}}/>
+        <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen'}}/>
+        <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Færdig', headerLeft: null}}/>
       </Stack.Navigator>
     </NavigationContainer>
+
+
+
+
   );
 }
 /*
