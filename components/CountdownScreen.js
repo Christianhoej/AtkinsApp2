@@ -51,7 +51,7 @@ function CountdownScreen ({navigation}) {
                   <Button
                       title="Åben"
 
-                      onPress={() => navigation.replace('Deliver')}
+                      onPress={() => navigation.replace('Closing')}
                       />
                   </View>
         </ScrollView>

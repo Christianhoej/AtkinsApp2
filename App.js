@@ -9,7 +9,11 @@ import {
   Text,
   StatusBar,
   Button,
-  Picker
+  Picker,
+  BackHandler,
+  Dimensions, Animated, TouchableOpacity,
+  NativeModules,
+  NativeEventEmitter
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -66,6 +70,50 @@ function TestScreen({ navigation }) {
   );
 }
 
+const eventEmitter = new NativeEventEmitter(NativeModules.LockerManager);
+
+connectionStatusChangedListener = eventEmitter.addListener('onConnectionStatusChanged',
+(event) => {
+//Check for different statuses of the connection * And Responsed accordingly
+if (event.status === LockerManager.STATUS_DEVICE_CONNECTED) {
+console.log("Connected!")
+//We can access params of the tiggered event by . operator
+} });
+
+authenticationStatusChangedListener = eventEmitter.addListener('onAuthenticationStatusChanged',
+(event) => { //Check for authentication status
+});
+
+compartmentStatusChangedListener= eventEmitter.addListener('onCompartmentStatusChanged',
+(event) => {
+//Check for compartment status: open, close
+});
+
+statusAvailableListener = eventEmitter.addListener('onStatusAvailable',
+(event) => {
+//Receive different device statuses here
+});
+
+tokenAvailableListener = eventEmitter.addListener('onTokenAvailable',
+(event) => {
+//Receive token here
+});
+
+errorListener = eventEmitter.addListener('onError',
+(event) => {
+//Receive different errors here
+});
+
+apiErrorListener = eventEmitter.addListener('onApiError',
+(event) => {
+//Receive API error here while fetching data from server
+});
+
+apiDataAvailable = eventEmitter.addListener('onApiDataAvailable',
+(event) => {
+//Receive data here that is fetched from server
+});
+
 function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -81,6 +129,26 @@ function DetailsScreen({ navigation }) {
 }
 
 const Stack = createStackNavigator();
+/*
+const count = 0;
+
+BackHandler.addEventListener('hardwareBackPress', function() {
+  // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
+  // Typically you would use the navigator here to go to the last state.
+
+  if (count == 0) {
+    this.goBack();
+    return true;
+  }
+  else if (count == 1)
+  return false;
+});
+*/
+
+
+
+
+
 
 
 function App() {
