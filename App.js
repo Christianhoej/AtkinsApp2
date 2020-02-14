@@ -13,7 +13,8 @@ import {
   BackHandler,
   Dimensions, Animated, TouchableOpacity,
   NativeModules,
-  NativeEventEmitter
+  NativeEventEmitter,
+  ToastAndroid
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -145,6 +146,30 @@ BackHandler.addEventListener('hardwareBackPress', function() {
 });
 */
 
+var backPressedOnce = false;
+
+BackHandler.addEventListener('hardwareBackPress', function() {
+  // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
+  // Typically you would use the navigator here to go to the last state.
+
+  if (backPressedOnce==true) {
+
+//    BackHandler.exitApp()
+    return false;
+  }
+  else {
+
+    backPressedOnce = true
+    ToastAndroid.show('Tryk tilbage igen for at lukke appen', ToastAndroid.SHORT);
+
+    setTimeout(function(){
+                  backPressedOnce=false}, 2000);
+    return true
+    }
+
+
+
+});
 
 
 
@@ -162,10 +187,10 @@ function App() {
           //{props => <HomeScreen {...props} extraData={someData} />}
           options={{ title: 'Start' }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detaljer' }}/>
+        <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detaljer'}}/>
         <Stack.Screen name="Countdown" component={CountdownScreen} options={{ title: 'Hent pakke' }}/>
         <Stack.Screen name="Deliver" component={DeliverScreen} options={{ title: 'Aflever pakke'}}/>
-        <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen'}}/>
+        <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen', headerLeft: null}}/>
         <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Færdig', headerLeft: null}}/>
       </Stack.Navigator>
     </NavigationContainer>

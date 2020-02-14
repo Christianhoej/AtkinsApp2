@@ -27,7 +27,14 @@ import * as React from 'react';
 import { useState } from 'react';
 import { NavigationContainer, StackActions, NavigationActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-function CountdownScreen ({navigation}) {
+
+
+
+
+function CountdownScreen ({ navigation, route }) {
+const { startpunktVal } = route.params;
+const { destinationVal } = route.params;
+const closingVar = "fromCountdown"
 
     return (
 
@@ -35,11 +42,12 @@ function CountdownScreen ({navigation}) {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
           <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Din pakke afhentes på {startpunktVal}</Text>
             <Text style={styles.sectionTitle}>Din pakke er reseveret i:</Text>
               <CountDown
                 until={60 * 30}
                 size={30}
-                onFinish={() => {navigation.popToTop() || alert('Din reservation løb ud...')}}
+                onFinish={() => {navigation.replace('Home') || alert('Din reservation løb ud...')}}
                 digitStyle={{backgroundColor: 'lightgrey'}}
                 digitTxtStyle={{color: '#1CC625'}}
                 timeToShow={['M', 'S']}
@@ -51,9 +59,17 @@ function CountdownScreen ({navigation}) {
                   <Button
                       title="Åben"
 
-                      onPress={() => navigation.replace('Closing')}
+                      onPress={() => navigation.replace('Closing', {closingVar1: closingVar, destination: destinationVal})}
                       />
                   </View>
+          <View style = {styles.button}>
+                <Button
+                    title="Annuller"
+
+                    onPress={() => navigation.replace('Home')}
+                    />
+
+            </View>
         </ScrollView>
     )
 }
@@ -106,7 +122,7 @@ sectionContainer: {
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 30,
-        marginTop: 100,
+        marginTop: 60,
         fontSize: 40,
         fontWeight: "400"
     },

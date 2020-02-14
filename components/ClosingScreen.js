@@ -29,7 +29,11 @@ import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function ClosingScreen ({navigation}) {
+function ClosingScreen ({navigation, route}) {
+const { closingVar1 } = route.params;
+const { destination } = route.params;
+
+
 
     return (
 
@@ -47,7 +51,16 @@ function ClosingScreen ({navigation}) {
                  <View style = {styles.button}>
                          <Button
                              title="Meld lågen lukket"
-                               onPress={() => navigation.replace("Deliver")}
+                               onPress={() => {
+                                if (closingVar1=="fromCountdown")
+                                    navigation.replace("Deliver", {destinationVal: destination})
+                                else
+                                    navigation.replace("Finish")
+                                }
+
+                               }
+
+
                            />
                          </View>
                </ScrollView>

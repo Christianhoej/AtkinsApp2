@@ -29,10 +29,10 @@ import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+function DeliverScreen ({navigation, route}) {
 
-
-function DeliverScreen ({navigation}) {
-
+const closingVar = "fromDeliver";
+const { destinationVal } = route.params;
 
 
 
@@ -43,14 +43,14 @@ function DeliverScreen ({navigation}) {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Aflever din pakke på....</Text>
+            <Text style={styles.sectionTitle}>Aflever din pakke på {destinationVal}</Text>
 
           </View>
 
           <View style = {styles.button}>
                   <Button
                       title="Åben"
-                      onPress={() => navigation.replace('Finish')}
+                      onPress={() => navigation.replace('Closing', {closingVar1: closingVar})}
 
                     />
                   </View>
