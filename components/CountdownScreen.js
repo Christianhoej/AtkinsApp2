@@ -44,31 +44,41 @@ const closingVar = "fromCountdown"
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Din pakke afhentes på {startpunktVal}</Text>
             <Text style={styles.sectionTitle}>Din pakke er reseveret i:</Text>
+
+
+          </View>
+
+            <View style={styles.countdownStyle}>
               <CountDown
                 until={60 * 30}
                 size={30}
+                style={styles.countdownStyle}
                 onFinish={() => {navigation.replace('Home') || alert('Din reservation løb ud...')}}
                 digitStyle={{backgroundColor: 'lightgrey'}}
-                digitTxtStyle={{color: '#1CC625'}}
+                digitTxtStyle={{color: '#000'}}
                 timeToShow={['M', 'S']}
                 timeLabels={{m: 'M', s: 'S'}}
               />
-          </View>
+              </View>
 
-          <View style = {styles.button}>
-                  <Button
-                      title="Åben"
+              <View style={styles.butttonContainer}>
 
-                      onPress={() => navigation.replace('Closing', {closingVar1: closingVar, destination: destinationVal})}
-                      />
-                  </View>
-          <View style = {styles.button}>
+          <View style = {styles.button2}>
                 <Button
                     title="Annuller"
 
                     onPress={() => navigation.replace('Home')}
                     />
 
+            </View>
+
+            <View style = {styles.button2}>
+                              <Button
+                                  title="Åben"
+
+                                  onPress={() => navigation.replace('Closing', {closingVar1: closingVar, destination: destinationVal})}
+                                  />
+                              </View>
             </View>
         </ScrollView>
     )
@@ -82,6 +92,10 @@ sectionContainer: {
   scrollView: {
       backgroundColor: Colors.white,
     },
+countdownStyle: {
+      paddingHorizontal: 20,
+      marginTop: 20
+    },
     engine: {
       position: 'absolute',
       right: 0,
@@ -89,6 +103,12 @@ sectionContainer: {
     body: {
       backgroundColor: Colors.white,
     },
+    butttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20
+      },
     sectionContainer: {
       marginTop: 32,
       paddingHorizontal: 24,
@@ -126,6 +146,11 @@ sectionContainer: {
         fontSize: 40,
         fontWeight: "400"
     },
+    button2: {
+        width: '40%',
+        height: 40,
+        paddingHorizontal: 20
+      },
 
 });
 

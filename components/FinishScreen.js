@@ -47,7 +47,7 @@ function FinishScreen ({navigation}) {
           </View>
           <View style = {styles.button}>
                   <Button
-                      title="Færdig"
+                      title="Afslut"
                         onPress={() => navigation.replace('Home')}
                     />
                   </View>
@@ -85,6 +85,7 @@ sectionContainer: {
       fontSize: 18,
       fontWeight: '400',
       color: Colors.dark,
+      textAlign: 'center'
     },
     highlight: {
       fontWeight: '700',
