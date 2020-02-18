@@ -130,7 +130,7 @@ function HomeScreen({navigation}) {
                 />
             </View>
 
-       <View style = {styles.button}>
+       <View style = {styles.sectionContainer}>
         <Button
             title="OK"
             onPress={() => {
@@ -142,7 +142,13 @@ function HomeScreen({navigation}) {
           />
         </View>
 
+
+    </ScrollView>
+
+
+/*
         <View style={styles.sectionContainer}>
+
                 <Text style={styles.sectionTitle}>Scan</Text>
                         <Button
                                 title="Scan"
@@ -173,14 +179,7 @@ function HomeScreen({navigation}) {
                         onPress={ () =>
                         LockerManager.connect("00000000-4281-4e45-0039-50130000003c") ||
                         console.log("Connect") ||
-                        /*console.log(LockerManager.STATUS_DEVICE_CONNECTED) ||
-                        console.log(LockerManager.STATUS_DEVICE_TIME_OUT) ||
-                        console.log(LockerManager.STATUS_DEVICE_NOT_FOUND) ||
-                        console.log(LockerManager.STATUS_COMPARTMENT_CLOSE) ||
-                        console.log(LockerManager.STATUS_COMPARTMENT_OPEN) ||
-                        console.log(LockerManager.ERROR_CODE_EXPIRE_TOKEN) ||
-                        console.log(LockerManager.STATUS_DEVICE_OUT_OF_RANGE) ||
-                        console.log(LockerManager.ERROR_CODE_DATA_NOT_RETRIEVED)*/
+
 
                         console.log(LockerManager.getConstants())
 
@@ -217,9 +216,7 @@ function HomeScreen({navigation}) {
                         }
 
                       />
-              </View>
-    </ScrollView>
-
+              </View>*/
 
 
 

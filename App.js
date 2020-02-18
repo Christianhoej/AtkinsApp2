@@ -185,13 +185,12 @@ function App() {
           name="Home"
           component={HomeScreen}
           //{props => <HomeScreen {...props} extraData={someData} />}
-          options={{ title: 'Start' }}
-        />
+          options={{ title: 'Book pakke'}}/>
         <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detaljer'}}/>
-        <Stack.Screen name="Countdown" component={CountdownScreen} options={{ title: 'Hent pakke' }}/>
+        <Stack.Screen name="Countdown" component={CountdownScreen} options={{ title: 'Afhent pakke' }}/>
         <Stack.Screen name="Deliver" component={DeliverScreen} options={{ title: 'Aflever pakke'}}/>
         <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen', headerLeft: null}}/>
-        <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Færdig', headerLeft: null}}/>
+        <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Afslut', headerLeft: null}}/>
       </Stack.Navigator>
     </NavigationContainer>
 
