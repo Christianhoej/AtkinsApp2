@@ -41,7 +41,7 @@ const { destination } = route.params;
                contentInsetAdjustmentBehavior="automatic"
                style={styles.scrollView}>
                  <View style={styles.sectionContainer}>
-                   <Text style={styles.sectionTitle}>Luk lågen når du har taget din pakke</Text>
+                   <Text style={styles.sectionTitle}>Luk lågen efter dig</Text>
 
                  </View>
                    <View style={styles.sectionContainer}>

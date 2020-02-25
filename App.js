@@ -39,6 +39,10 @@ import CountdownScreen from './components/CountdownScreen';
 import DeliverScreen from './components/DeliverScreen';
 import ClosingScreen from './components/ClosingScreen';
 import FinishScreen from './components/FinishScreen';
+import LoginScreen from './components/LoginScreen';
+import Operation from './components/Operation';
+import testcomponent from './components/testcomponent';
+import Index from './components/index';
 
 
 
@@ -70,7 +74,7 @@ function TestScreen({ navigation }) {
 
   );
 }
-
+/*
 const eventEmitter = new NativeEventEmitter(NativeModules.LockerManager);
 
 connectionStatusChangedListener = eventEmitter.addListener('onConnectionStatusChanged',
@@ -114,7 +118,7 @@ apiDataAvailable = eventEmitter.addListener('onApiDataAvailable',
 (event) => {
 //Receive data here that is fetched from server
 });
-
+*/
 function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -128,6 +132,7 @@ function DetailsScreen({ navigation }) {
     </View>
   );
 }
+
 
 const Stack = createStackNavigator();
 /*
@@ -179,8 +184,10 @@ BackHandler.addEventListener('hardwareBackPress', function() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Test" component={TestScreen} />
+      <Stack.Navigator initialRouteName="Index">
+        <Stack.Screen name="Test" component={testcomponent} />
+        <Stack.Screen name="Operation" component={Operation} />
+        <Stack.Screen name="Index" component={Index} />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -191,6 +198,7 @@ function App() {
         <Stack.Screen name="Deliver" component={DeliverScreen} options={{ title: 'Aflever pakke'}}/>
         <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen', headerLeft: null}}/>
         <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Afslut', headerLeft: null}}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Login', headerLeft: null}}/>
       </Stack.Navigator>
     </NavigationContainer>
 

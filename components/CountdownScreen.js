@@ -10,7 +10,10 @@ import {
   Text,
   StatusBar,
   Button,
-  Picker
+  Picker,
+  NativeEventEmitter,
+      NativeModules,
+      ToastAndroid
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -24,25 +27,170 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, Component } from 'react';
 import { NavigationContainer, StackActions, NavigationActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
+let UUID = '';
+let isAuthenticated = false;
+
+let errorListener;
+let tokenAvailableListener;
+let statusAvailableListener;
+let connectionStatusChangedListener;
+let compartmentStatusChangedListener;
+let authenticationStatusChangedListener;
+
+let apiErrorListener;
+let apiDataAvailable;
 
 
-function CountdownScreen ({ navigation, route }) {
-const { startpunktVal } = route.params;
+async function requestPermissions() {
+    try {
+    //const granted = PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
+    const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+        title: 'Cool Photo App Camera Permission',
+        message:
+            'Cool Photo App needs access to your camera ' +
+            'so you can take awesome pictures.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+        },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Permssion Granted');
+        LockerManager.startScan();
+        return true;
+    } else {
+        console.log('Permission Rejected');
+    }
+    } catch (err) {
+    console.warn(err);
+    }
+    return false;
+}
+
+let uuid = '';
+
+export default class CountdownScreen extends Component{
+/*const { startpunktVal } = route.params;
 const { destinationVal } = route.params;
 const closingVar = "fromCountdown"
+*/
+constructor(props) {
+        super(props);
+        this.onConnectPress = this.onConnectPress.bind(this);
+        /*this.state = {
+            isConnecting: false
+        }*/
 
+
+        if (requestPermissions()) {
+            console.log('permission granted');
+            //LockerManager.startScan();
+        }
+        this.getData = this.getData.bind(this);
+        this.onDisconnect = this.onDisconnect.bind(this);
+        //this.handleOnBackPress = this.handleOnBackPress.bind(this);
+        this.onAuthenticatePress = this.onAuthenticatePress.bind(this);
+        this.onCompartmentOpenPress = this.onCompartmentOpenPress.bind(this);
+
+        this.state = {
+        isConnecting: false,
+            loadingData: false,
+            token: '',
+            authenticationToken: '',
+            authenticationResponse: ''
+        }
+
+        UUID = this.props.navigation.getParam('uid', '');
+
+    }
+
+    componentDidMount() {
+        const eventEmitter = new NativeEventEmitter(NativeModules.LockerManager);
+        eventEmitter.addListener('onConnectionStatusChanged', (event) => {
+            this.setState({isConnecting: false});
+            if (event.status === LockerManager.STATUS_DEVICE_CONNECTED) {
+                console.log('connected');
+                LockerManager.stopScan();
+                this.props.navigation.navigate('Operation', {uid: event.uid});
+            } else {
+                console.log('connection failed');
+                ToastAndroid.show('connection failed status code ' + event.status, ToastAndroid.SHORT);
+            }
+        })
+    }
+
+    getData() {
+            LockerManager.getData(UUID);
+            this.setState({
+                    loadingData: !this.state.loadingData
+                });
+        }
+
+        onAuthenticatePress() {
+            LockerManager.authenticate(
+                UUID,
+                this.state.authenticationToken,
+                this.state.authenticationResponse
+            );
+        }
+
+        onCompartmentOpenPress() {
+            LockerManager.openCompartment(
+                UUID,
+                this.state.token
+            );
+        }
+
+        onDisconnect() {
+            LockerManager.startScan();
+            LockerManager.disconnect(UUID);
+            this.props.navigation.goBack();
+        }
+
+    /*onConnectPress() {
+        console.log('åben pressed');
+
+        uuid = this.textInputUUID._lastNativeText;
+
+        if (uuid == null || uuid.length == 0) {
+            ToastAndroid.show('Empty uuid', ToastAndroid.SHORT);
+        } else {
+            console.log(uuid);
+            //LockerManager.startScan();
+            this.setState({isConnecting: true});
+            LockerManager.connect(uuid);
+        }
+    }*/
+
+    onConnectPress() {
+            console.log('åben pressed');
+
+            //uuid = this.textInputUUID._lastNativeText;
+
+            if (UUID == null || UUID.length == 0) {
+                ToastAndroid.show('Empty UUID', ToastAndroid.SHORT);
+            } else {
+                console.log(UUID);
+                //LockerManager.startScan();
+                this.setState({isConnecting: true});
+                LockerManager.connect(UUID);
+            }
+        }
+
+render(){
     return (
 
        <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
           <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Din pakke afhentes på {startpunktVal}</Text>
             <Text style={styles.sectionTitle}>Din pakke er reseveret i:</Text>
 
 
@@ -75,13 +223,14 @@ const closingVar = "fromCountdown"
             <View style = {styles.button2}>
                               <Button
                                   title="Åben"
-
-                                  onPress={() => navigation.replace('Closing', {closingVar1: closingVar, destination: destinationVal})}
+                                    onPress={this.onConnectPress}
+                                  //onPress={() => navigation.replace('Closing', {closingVar1: closingVar, destination: destinationVal})}
                                   />
                               </View>
             </View>
         </ScrollView>
     )
+}
 }
 
 
@@ -154,4 +303,3 @@ countdownStyle: {
 
 });
 
-export default CountdownScreen;

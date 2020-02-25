@@ -15,6 +15,26 @@ public interface ApiService {
     @Headers({
             "Accept: */*",
             "Accept-Encoding: gzip, deflate",
+            "Authorization: Basic YXRraW5zQHN3aXBib3g6OTJmNmM1NDYtMjBiMy0xMWVhLWJjYWQtMzRlNmQ3MDIxNzg1",
+            "Cache-Control: no-cache",
+            "Connection: keep-alive",
+            "Content-Type: application/json",
+            "Host: test.infinity.swipbox.com",
+            "Postman-Token: d29bf2d7-7725-4335-9c1b-dfe3b6db6834,801a7433-35ad-46c3-9ef7-dc9a74910cd7",
+            "User-Agent: PostmanRuntime/7.20.1",
+            "cache-control: no-cache",
+            "x-api-key: de184407-20ac-11ea-bcad-34e6d7021785"
+    })
+    @GET("get_atkins_compartment_tokens")
+    Observable<DataModelCompartments> getCompartments(@Query("uid") String uid);
+}
+
+
+/*public interface ApiService {
+
+    @Headers({
+            "Accept: *//*",
+           "Accept-Encoding: gzip, deflate",
             "Connection: keep-alive",
             "Host: dev.infinity.swipbox.com",
             "Postman-Token: b39bd726-8643-4748-aeb4-62aeae814746,11e4a689-2108-438d-9bf1-412e057c4673",
@@ -25,3 +45,4 @@ public interface ApiService {
     @GET("compartments")
     Observable<DataModelCompartments> getCompartments(@Query("uid") String uid);
 }
+*/

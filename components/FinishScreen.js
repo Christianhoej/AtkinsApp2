@@ -11,6 +11,7 @@ import {
   StatusBar,
   Button,
   Picker,
+  TextInput,
   ActivityIndicator
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
@@ -30,7 +31,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 function FinishScreen ({navigation}) {
-
+const [value, onChangeText] = React.useState('');
     return (
 
        <ScrollView
@@ -38,8 +39,12 @@ function FinishScreen ({navigation}) {
         style={styles.scrollView}>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Tak for din hjælp!</Text>
-            <Text style={styles.sectionDescription}>Du modtager en mail med din rabat</Text>
-
+            <Text style={styles.sectionDescription}>Indtast din email nedenfor hvor du vil modtage din rabat</Text>
+            <TextInput
+                  style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                  onChangeText={text => onChangeText(text)}
+                  value={value}
+                />
 
           </View>
             <View style={styles.sectionContainer}>
@@ -48,7 +53,7 @@ function FinishScreen ({navigation}) {
           <View style = {styles.button}>
                   <Button
                       title="Afslut"
-                        onPress={() => navigation.replace('Home')}
+                        onPress={() => {navigation.replace('Home'), console.log(value)}}
                     />
                   </View>
         </ScrollView>
@@ -108,7 +113,6 @@ sectionContainer: {
         fontSize: 40,
         fontWeight: "400"
     },
-
 });
 
 export default FinishScreen;
