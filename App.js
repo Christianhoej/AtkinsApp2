@@ -28,7 +28,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -40,6 +40,7 @@ import DeliverScreen from './components/DeliverScreen';
 import ClosingScreen from './components/ClosingScreen';
 import FinishScreen from './components/FinishScreen';
 import LoginScreen from './components/LoginScreen';
+import PickupScreen from './components/PickUpScreen';
 import Operation from './components/Operation';
 import testcomponent from './components/testcomponent';
 import Index from './components/index';
@@ -119,6 +120,8 @@ apiDataAvailable = eventEmitter.addListener('onApiDataAvailable',
 //Receive data here that is fetched from server
 });
 */
+
+
 function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -181,17 +184,20 @@ BackHandler.addEventListener('hardwareBackPress', function() {
 
 
 
-function App() {
+//function App() {
+export default class App extends Component {
+
+render() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Index">
+      <Stack.Navigator initialRouteName="Pickup">
         <Stack.Screen name="Test" component={testcomponent} />
         <Stack.Screen name="Operation" component={Operation} />
         <Stack.Screen name="Index" component={Index} />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          //{props => <HomeScreen {...props} extraData={someData} />}
+              //{props => <HomeScreen {...props} extraData={someData} />}
           options={{ title: 'Book pakke'}}/>
         <Stack.Screen name="Details" component={DetailsScreen} options={{ title: 'Detaljer'}}/>
         <Stack.Screen name="Countdown" component={CountdownScreen} options={{ title: 'Afhent pakke' }}/>
@@ -199,6 +205,7 @@ function App() {
         <Stack.Screen name="Closing" component={ClosingScreen} options={{ title: 'Luk lågen', headerLeft: null}}/>
         <Stack.Screen name="Finish" component={FinishScreen} options={{ title: 'Afslut', headerLeft: null}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Login', headerLeft: null}}/>
+        <Stack.Screen name="Pickup" component={PickupScreen} options={{ title: 'Afhent pakke', headerLeft: null}}/>
       </Stack.Navigator>
     </NavigationContainer>
 
@@ -206,56 +213,9 @@ function App() {
 
 
   );
+  }
 }
-/*
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
-*/
+
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.white,
@@ -297,4 +257,22 @@ const styles = StyleSheet.create({
 
 
 
-export default App;
+//export default App;
+
+/*
+const RootStack = createStackNavigator({
+    Pickup: PickupScreen
+  },
+  {
+    initialRouteName: 'Pickup',
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
+
+export default class App extends Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+*/

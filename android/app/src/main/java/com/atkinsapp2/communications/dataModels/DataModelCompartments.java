@@ -3,11 +3,13 @@ package com.atkinsapp2.communications.dataModels;
 
 import com.google.gson.annotations.SerializedName;
 
+
 @SuppressWarnings("unused")
 public class DataModelCompartments {
 
     @SerializedName("data")
     private Data mData;
+
     @SerializedName("errors")
     private Errors mErrors;
     @SerializedName("headers")

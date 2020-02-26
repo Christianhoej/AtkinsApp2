@@ -42,7 +42,8 @@ async function requestPermissions() {
     return false;
 }
 
-let uuid = '00000000-4462-4E45-0028-901000000042';
+//let uuid = '00000000-4462-4E45-0028-901000000042';
+let uuid = '';
 
 export default class Connection extends Component {
     static navigationOptions = {
@@ -59,7 +60,7 @@ export default class Connection extends Component {
 
         if (requestPermissions()) {
             console.log('permission granted');
-            //LockerManager.startScan();
+            LockerManager.startScan();
         }
     }
 
@@ -81,7 +82,7 @@ export default class Connection extends Component {
     onConnectPress() {
         console.log('pressed');
 
-       // uuid = this.textInputUUID._lastNativeText;
+        uuid = this.textInputUUID._lastNativeText;
 
         if (uuid == null || uuid.length == 0) {
             ToastAndroid.show('Empty uuid', ToastAndroid.SHORT);
@@ -102,7 +103,27 @@ export default class Connection extends Component {
                 </View>
             )
         } else {
-           return (
+        return (
+            <View style = {styles.container}>
+                <Text>SwipBox Sample App</Text>
+                <TextInput
+                    style={{textAlign: 'center'}}
+                    id="textInputUUID"
+                    placeholder="Enter UUID to connect"
+                    underlineColorAndroid="black"
+                    multiline={true}
+                    ref={input => this.textInputUUID = input}
+                    //value="00000000-4281-4e45-0039-50130000003c"
+                    value="00000000-4462-4e45-0028-901000000042"
+                    //value=LockerManager.
+                />
+                <Button
+                    title="Connect!"
+                    onPress={this.onConnectPress}
+                />
+            </View>
+        )
+           /*return (
                 <View style = {styles.container}>
                     <Text>SwipBox Sample App</Text>
                     <Button
@@ -110,7 +131,7 @@ export default class Connection extends Component {
                         onPress={this.onConnectPress}
                     />
                 </View>
-            )
+            )*/
         }
     }
 }
