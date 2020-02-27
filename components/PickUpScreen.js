@@ -207,7 +207,7 @@ ToastAndroid.show('connection failed status code ' + event.status, ToastAndroid.
     }
 
     getData() {
-            LockerManager.getData("00000000-4462-4E45-0028-901000000042");
+            LockerManager.getData('00000000-4462-4E45-0028-901000000042');
             this.setState({
                     loadingData: !this.state.loadingData
                 });

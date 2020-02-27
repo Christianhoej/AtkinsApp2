@@ -184,13 +184,13 @@ BackHandler.addEventListener('hardwareBackPress', function() {
 
 
 
-//function App() {
-export default class App extends Component {
+function App() {
+//export default class App extends Component {
 
-render() {
+//render() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Pickup">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Test" component={testcomponent} />
         <Stack.Screen name="Operation" component={Operation} />
         <Stack.Screen name="Index" component={Index} />
@@ -213,7 +213,7 @@ render() {
 
 
   );
-  }
+  //}
 }
 
 const styles = StyleSheet.create({
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
 
 
 
-//export default App;
+export default App;
 
 /*
 const RootStack = createStackNavigator({

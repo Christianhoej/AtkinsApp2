@@ -136,43 +136,13 @@ connectionStatusChangedListener.remove();
 compartmentStatusChangedListener.remove();
 authenticationStatusChangedListener.remove();
 };*/
-//function HomeScreen({navigation}) {
-
-async function requestPermissions() {
-    try {
-    //const granted = PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
-    const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-        title: 'Cool Photo App Camera Permission',
-        message:
-            'Cool Photo App needs access to your camera ' +
-            'so you can take awesome pictures.',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-        },
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('Permssion Granted');
-        LockerManager.startScan();
-        return true;
-    } else {
-        console.log('Permission Rejected');
-    }
-    } catch (err) {
-    console.warn(err);
-    }
-    return false;
-}
+function HomeScreen({navigation, route}) {
 
 
-let uuid = '00000000-4462-4E45-0028-901000000042';
 
-
-export default class HomeScreen extends Component {
-
-constructor() {
+//export default class HomeScreen extends Component {
+//function HomeScreen ({naviagtion}) {
+/*constructor() {
         super();
         this.onConnectPress = this.onConnectPress.bind(this);
         this.state = {
@@ -200,6 +170,7 @@ constructor() {
             }
         })
     }
+
 
     componentWillUnmount() {
             console.log('componentWillUnmount');
@@ -230,8 +201,8 @@ constructor() {
             LockerManager.connect(uuid);
         }
     }
-
-render(){
+*/
+//render(){
   return (
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
@@ -341,8 +312,6 @@ render(){
     </ScrollView>
 
 
-/*
-        */
 
 
 
@@ -373,7 +342,7 @@ render(){
         </View>
     </View>*/
   );
-  }
+ // }
 }
 
 const styles = StyleSheet.create({
@@ -451,4 +420,4 @@ const pickerSelectStyles = StyleSheet.create({
 });
 
 
-//export default HomeScreen;
+export default HomeScreen;
